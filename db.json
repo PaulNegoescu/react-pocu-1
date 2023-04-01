@@ -1,0 +1,20 @@
+{
+  "users": [],
+  "todos": [
+    {
+      "id": 1,
+      "title": "Buy Milk",
+      "completed": false
+    },
+    {
+      "title": "Update todos form code",
+      "completed": false,
+      "id": 10
+    },
+    {
+      "title": "Ceva nou",
+      "completed": false,
+      "id": 11
+    }
+  ]
+}

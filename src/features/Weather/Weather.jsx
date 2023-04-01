@@ -6,18 +6,35 @@ function kelvinToCelsius(degK) {
 
 export function Weather() {
   const [data, setData] = useState(null);
+  const [geolocation, setGeolocation] = useState({
+    lat: null,
+    lon: null,
+  });
   const [inputValues, setInputValues] = useState({
     city: '',
     country: 'RO',
   });
 
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition((geo) => {
+      setGeolocation({ lat: geo.coords.latitude, lon: geo.coords.longitude });
+    }, console.warn);
+  }, []);
+
+  useEffect(() => {
+    const { lat, lon } = geolocation;
+    if (!lat || !lon) {
+      return;
+    }
     fetch(
-      'https://api.openweathermap.org/data/2.5/weather?q=Brasov,RO&appid=8feb7eed04a11a56e7ac15279797d21d'
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=8feb7eed04a11a56e7ac15279797d21d`
     )
       .then((res) => res.json())
-      .then((weather) => setData(weather));
-  }, []);
+      .then((weather) => {
+        setInputValues({ city: weather.name, country: weather.sys.country });
+        setData(weather);
+      });
+  }, [geolocation]);
 
   function handleInputChange(e) {
     // const newValues = { ...inputValues };
