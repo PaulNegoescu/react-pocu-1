@@ -53,10 +53,6 @@ export function Weather() {
       .then((weather) => setData(weather));
   }
 
-  if (!data) {
-    return null;
-  }
-
   return (
     <>
       <h1>Weather</h1>
@@ -88,15 +84,19 @@ export function Weather() {
           <button type="submit">Search</button>
         </p>
       </form>
-      <p>
-        {kelvinToCelsius(data.main.temp)}&deg;C
-        <img
-          src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
-          alt={data.weather[0].main + ' icon'}
-          width="50"
-        />
-      </p>
-      <p>Today's weather is {data.weather[0].main}.</p>
+      {data && (
+        <>
+          <p>
+            {kelvinToCelsius(data.main.temp)}&deg;C
+            <img
+              src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+              alt={data.weather[0].main + ' icon'}
+              width="50"
+            />
+          </p>
+          <p>Today's weather is {data.weather[0].main}.</p>
+        </>
+      )}
     </>
   );
 }

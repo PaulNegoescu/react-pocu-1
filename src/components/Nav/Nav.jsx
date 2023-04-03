@@ -37,6 +37,23 @@ export function Nav() {
             Todos
           </NavLink>
         </li>
+
+        <li className={styles.pushRight}>
+          <NavLink
+            className={({ isActive }) => (isActive ? styles.active : '')}
+            to="/login"
+          >
+            Login
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className={({ isActive }) => (isActive ? styles.active : '')}
+            to="/register"
+          >
+            Register
+          </NavLink>
+        </li>
       </menu>
     </nav>
   );

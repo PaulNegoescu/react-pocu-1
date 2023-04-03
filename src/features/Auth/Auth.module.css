@@ -1,0 +1,41 @@
+.authForm {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 0.3rem;
+
+  width: 400px;
+}
+
+.authForm label {
+  text-align: right;
+  margin-top: 0.2rem;
+}
+
+.authForm
+  input:where(
+    [type='text'],
+    [type='password'],
+    [type='number'],
+    [type='email'],
+    [type='url']
+  ) {
+  padding: 0.2rem 0.4rem;
+
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
+}
+
+.authForm
+  input:where(
+    [type='text'],
+    [type='password'],
+    [type='number'],
+    [type='email'],
+    [type='url']
+  ):focus {
+  outline: 2px solid var(--primary-color);
+}
+
+.submitBtn {
+  grid-column-start: 2;
+}

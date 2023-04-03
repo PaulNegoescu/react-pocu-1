@@ -1,15 +1,19 @@
+import clsx from 'clsx';
 import { useEffect, useState, useRef } from 'react';
+import { configureApi } from '../../helpers/api.helper';
+import styles from './Todos.module.css';
+
+const api = configureApi('todos');
 
 export function Todos() {
   const [todos, setTodos] = useState(null);
   const [title, setTitle] = useState('');
+  const [error, setError] = useState('');
   const titleRef = useRef();
 
   useEffect(() => {
     async function getTodos() {
-      const data = await fetch('http://localhost:3000/todos').then((res) =>
-        res.json()
-      );
+      const data = await api.get();
 
       setTodos(data);
     }
@@ -18,19 +22,19 @@ export function Todos() {
   }, []);
 
   function handleTitleChange(e) {
+    setError('');
     setTitle(e.target.value);
   }
 
   async function handleAddTodo(e) {
     e.preventDefault();
 
-    const todo = await fetch('http://localhost:3000/todos', {
-      method: 'POST',
-      body: JSON.stringify({ title, completed: false }),
-      headers: {
-        'Content-type': 'application/json',
-      },
-    }).then((res) => res.json());
+    if (!title) {
+      setError('Please provide a todo item.');
+      return;
+    }
+
+    const todo = await api.add({ title, completed: false });
 
     // const newTodos = [...todos];
     // newTodos.push(todo);
@@ -42,18 +46,27 @@ export function Todos() {
   }
 
   async function handleDeleteTodo(todoId) {
-    await fetch(`http://localhost:3000/todos/${todoId}`, {
-      method: 'DELETE',
-    });
+    await api.remove(todoId);
 
     const newTodos = todos.filter((todo) => todo.id !== todoId);
     setTodos(newTodos);
   }
 
+  async function handleCompleteTodo(e, todo) {
+    todo.completed = e.target.checked;
+    setTodos([...todos]);
+
+    api.update(todo.id, { completed: e.target.checked });
+  }
+
   return (
     <>
       <h1>Todos</h1>
-      <form onSubmit={handleAddTodo}>
+      <form
+        onSubmit={handleAddTodo}
+        className={clsx({ [styles['is-invalid']]: error })}
+        noValidate
+      >
         <label htmlFor="title">What do you want to do?</label>
         <input
           type="text"
@@ -62,14 +75,20 @@ export function Todos() {
           ref={titleRef}
           value={title}
           onChange={handleTitleChange}
+          required
         />
         <button type="submit">Add Todo Item</button>
+        {error && <p className={styles['error-message']}>{error}</p>}
       </form>
-      <ul>
+      <ul className={styles.todoList}>
         {todos?.map((todo) => (
           <li key={todo.id}>
             <label>
-              <input type="checkbox" defaultChecked={todo.completed} />
+              <input
+                type="checkbox"
+                onChange={(e) => handleCompleteTodo(e, todo)}
+                checked={todo.completed}
+              />
               {todo.title}
             </label>
             <button type="button" onClick={() => handleDeleteTodo(todo.id)}>
