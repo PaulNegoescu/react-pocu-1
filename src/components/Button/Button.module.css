@@ -3,6 +3,10 @@
   --btn-border: var(--secondary-color-dark);
   --txt-color: var(--text-color);
 
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
   padding: 0.4rem 1rem;
 
   background-color: var(--btn-bg);

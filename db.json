@@ -13,6 +13,34 @@
       "firstName": "Paul",
       "lastName": "Neogescu",
       "id": 2
+    },
+    {
+      "email": "b@b.com",
+      "password": "$2a$10$pxZzJ7Yx6poWDyT3o0Ovauy5mqqh3l45ZHEpsRIjlK4wk/RWTn9ca",
+      "firstName": "Paul",
+      "lastName": "Neogescu",
+      "id": 3
+    },
+    {
+      "email": "c@c.com",
+      "password": "$2a$10$dlYp/p/wecIGqq5NbZvCq.1E7W7GIwr2nckjL4N64xWRdeT2AaYiu",
+      "firstName": "Paul",
+      "lastName": "Test",
+      "id": 4
+    },
+    {
+      "email": "d@d.com",
+      "password": "$2a$10$F8E2SzHlXkwFAD0RcmAemO8Rt1nu0eZO97/9r9wECKr6/pbrpFVWe",
+      "firstName": "Paul",
+      "lastName": "Test",
+      "id": 5
+    },
+    {
+      "email": "r@e.com",
+      "password": "$2a$10$YJ4Q9OKwFbUOp2Xf0xshCO0XSXQhrw0ngE683vdx.1bGJQJbWaviC",
+      "firstName": "Paul",
+      "lastName": "faasdfas",
+      "id": 6
     }
   ],
   "todos": [

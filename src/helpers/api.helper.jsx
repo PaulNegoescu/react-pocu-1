@@ -1,10 +1,11 @@
 const apiUrl = import.meta.env.VITE_API_URL;
 
-class ApiError extends Error {}
+export class ApiError extends Error {}
 
-function handleResponse(res) {
+async function handleResponse(res) {
   if (!res.ok) {
-    throw new ApiError('Something went wrong, please try again later.');
+    const errorMessage = await res.json();
+    throw new ApiError(errorMessage);
   }
 
   return res.json();
