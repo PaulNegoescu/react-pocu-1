@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext } from 'react';
+import { useLocalStorageState } from '~/hooks/useLocalStorageState';
 
 const AuthContext = createContext(null);
 const initialValue = {
@@ -7,7 +8,7 @@ const initialValue = {
 };
 
 export function AuthContextProvider({ children }) {
-  const [auth, setAuth] = useState(initialValue);
+  const [auth, setAuth] = useLocalStorageState('auth', initialValue);
 
   function login(auth) {
     setAuth(auth);

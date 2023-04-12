@@ -1,6 +1,22 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Nav.module.css';
 import { useAuth } from '../../features';
+import clsx from 'clsx';
+
+function BrandNavLink({ children, className, ...props }) {
+  return (
+    <NavLink
+      className={({ isActive }) =>
+        clsx(className, { [styles.active]: isActive })
+      }
+      {...props}
+    >
+      {children}
+    </NavLink>
+  );
+
+  // React.createElement(NavLink, {className: clsx(), ...props}, children);
+}
 
 export function Nav() {
   const { user, logout } = useAuth();
@@ -15,36 +31,19 @@ export function Nav() {
     <nav className={styles['main-menu']}>
       <menu>
         <li>
-          <NavLink
-            className={({ isActive }) => (isActive ? styles.active : '')}
-            to="/"
-          >
-            Home
-          </NavLink>
+          <BrandNavLink to="/">Home</BrandNavLink>
         </li>
         <li>
-          <NavLink
-            className={({ isActive }) => (isActive ? styles.active : '')}
-            to="/counter"
-          >
-            Counter
-          </NavLink>
+          <BrandNavLink to="/counter">Counter</BrandNavLink>
         </li>
         <li>
-          <NavLink
-            className={({ isActive }) => (isActive ? styles.active : '')}
-            to="/weather"
-          >
-            Weather
-          </NavLink>
+          <BrandNavLink to="/weather">Weather</BrandNavLink>
         </li>
         <li>
-          <NavLink
-            className={({ isActive }) => (isActive ? styles.active : '')}
-            to="/todos"
-          >
-            Todos
-          </NavLink>
+          <BrandNavLink to="/todos">Todos</BrandNavLink>
+        </li>
+        <li>
+          <BrandNavLink to="/films">Films</BrandNavLink>
         </li>
 
         {user && (
@@ -58,20 +57,10 @@ export function Nav() {
         {!user && (
           <>
             <li className={styles.pushRight}>
-              <NavLink
-                className={({ isActive }) => (isActive ? styles.active : '')}
-                to="/login"
-              >
-                Login
-              </NavLink>
+              <BrandNavLink to="/login">Login</BrandNavLink>
             </li>
             <li>
-              <NavLink
-                className={({ isActive }) => (isActive ? styles.active : '')}
-                to="/register"
-              >
-                Register
-              </NavLink>
+              <BrandNavLink to="/register">Register</BrandNavLink>
             </li>
           </>
         )}

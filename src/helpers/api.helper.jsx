@@ -16,7 +16,7 @@ const headers = {
 };
 
 export function configureApi(entity) {
-  function get(search = {}, options = {}) {
+  function get(path = '', search = {}, options = {}) {
     let restOfUrl = '';
     if (Object.keys(search).length > 0) {
       restOfUrl = '?';
@@ -24,7 +24,12 @@ export function configureApi(entity) {
         restOfUrl += `${key}=${search[key]}`;
       }
     }
-    return fetch(`${apiUrl}/${entity}${restOfUrl}`, options).then(
+
+    if (path) {
+      path = `/${path}`;
+    }
+
+    return fetch(`${apiUrl}/${entity}${path}${restOfUrl}`, options).then(
       handleResponse
     );
   }
