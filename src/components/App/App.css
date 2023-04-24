@@ -33,3 +33,20 @@ h5,
 h5 {
   color: var(--primary-color);
 }
+
+input:is(:not([type='checkbox'], [type='radio'])),
+textarea {
+  padding: 0.3rem 0.2rem;
+
+  border: 1px solid var(--primary-color-dark);
+  border-radius: 3px;
+  font-family: inherit;
+}
+
+input {
+  accent-color: var(--primary-color);
+}
+
+.align-self-top {
+  align-self: start;
+}

@@ -51,3 +51,25 @@
 .fullWidth {
   grid-column: 1 / -1;
 }
+
+.addForm {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.addForm > label,
+.addForm > span {
+  text-align: right;
+}
+
+.submitBtn {
+  grid-column-start: 2;
+}
+
+.group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.5rem;
+}

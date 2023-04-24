@@ -1,4 +1,6 @@
 export { Nav } from './Nav/Nav';
+export { Button } from './Button/Button';
+export { Autocomplete } from './Autocomplete/Autocomplete';
 export { App } from './App/App';
 export { NotFound } from './NotFound/NotFound';
 export { Parent } from './Communication/Parent';
