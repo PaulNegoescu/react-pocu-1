@@ -1,0 +1,44 @@
+.autocomplete {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  flex: 100% 1 0;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+
+  background: var(--primary-color);
+  border-radius: 3px;
+  color: #fff;
+}
+
+.tags button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+
+  background: var(--primary-color);
+  border: 0;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.tags button:hover {
+  color: var(--accent-color);
+}
