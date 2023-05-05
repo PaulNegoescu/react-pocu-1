@@ -78,17 +78,17 @@ export function Counter({ initialCount = 0, initialStep = 1 }) {
   );
 }
 
-let state;
-function useMyState(initialValue) {
-  // Nullish coalescing opertaor ??
-  // null ?? ceva => ceva; undefined ?? ceva => ceva; 0 ?? ceva => 0; false ?? ceva => false
-  state = state ?? initialValue;
+// let state;
+// function useMyState(initialValue) {
+//   // Nullish coalescing opertaor ??
+//   // null ?? ceva => ceva; undefined ?? ceva => ceva; 0 ?? ceva => 0; false ?? ceva => false
+//   state = state ?? initialValue;
 
-  // closure
-  function setState(newValue) {
-    state = newValue;
-    Counter();
-  }
+//   // closure
+//   function setState(newValue) {
+//     state = newValue;
+//     Counter();
+//   }
 
-  return [state, setState];
-}
+//   return [state, setState];
+// }

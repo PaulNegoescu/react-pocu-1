@@ -59,21 +59,3 @@ export function Autocomplete({ options, name }) {
     </>
   );
 }
-
-function test() {
-  console.log(a, sub()); // undefined 42
-  var a = 15;
-
-  function sub() {
-    return 42;
-  }
-}
-
-function test() {
-  var a;
-  function sub() {
-    return 42;
-  }
-  console.log(a, sub()); // undefined 42
-  a = 15;
-}
